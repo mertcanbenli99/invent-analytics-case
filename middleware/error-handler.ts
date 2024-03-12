@@ -5,17 +5,15 @@ export const errorHandler = (
   err: Error,
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   if (err instanceof CustomError) {
     return res.status(err.statusCode).send({ errors: err.serializeErrors() });
-  } 
-else {
-  console.error(err);
+  } else {
+    console.error(err);
 
-  return res.status(400).send({
-    errors: [{ message: "Something went wrong" }],
-  });
-  
-}
+    return res.status(400).send({
+      errors: [{ message: "Something went wrong" }],
+    });
+  }
 };
