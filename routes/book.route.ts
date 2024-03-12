@@ -29,8 +29,10 @@ router.get('/books/:bookId', async (req: Request, res: Response) => {
       const query = await bookRepository.createQueryBuilder('book')
       .select('book.id', 'id')
       .addSelect('book.name', 'name')
-      .addSelect('(SELECT AVG(borrowed_book.score) FROM borrowed_book WHERE borrowed_book.book_id = book.id and borrowed_book.score != -1)', 'score').getRawOne()
-   
+      .addSelect('COALESCE((SELECT AVG(borrowed_book.score) FROM borrowed_book WHERE borrowed_book.book_id = book.id and borrowed_book.score != -1), -1)', 'score')
+      .where('book.id = :bookId', { bookId })
+      .getRawOne()
+      
       return res.status(200).send(query)
       
 

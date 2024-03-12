@@ -1,4 +1,5 @@
-import {  Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
+import {  Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BorrowedBook } from "./borrowed-book.entity";
 
 @Entity()
 export class User {
@@ -8,4 +9,7 @@ export class User {
 
     @Column({type: "varchar"})
     name: string
+
+    @OneToMany(() => BorrowedBook, borrowedBook => borrowedBook.user, { onDelete: 'CASCADE' })
+    books: BorrowedBook[];
 }
