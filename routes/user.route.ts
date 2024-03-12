@@ -3,6 +3,7 @@ import { User } from "../db/entities/user.entity"
 import express, {Request, Response} from "express"
 
 
+
 const router = express.Router()
 
 router.post('/users', async (req: Request, res: Response) => {
