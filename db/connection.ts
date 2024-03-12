@@ -1,7 +1,7 @@
 import { DataSource } from "typeorm"
 import { User } from "../db/entities/user.entity"
-import dotenv from "dotenv";
-import { TYPEORM } from "config/config";
+import { TYPEORM } from "../config/config";
+import { Book } from "./entities/book.entity";
 
 export const PostgresDataSource = new DataSource({
     type: TYPEORM.CONNECTION as "postgres",
@@ -11,7 +11,8 @@ export const PostgresDataSource = new DataSource({
     password: TYPEORM.PASSWORD,
     database: TYPEORM.DATABASE,
     entities: [
-        User
+        User,
+        Book
     ],
     synchronize: true
 })

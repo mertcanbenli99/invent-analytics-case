@@ -1,6 +1,7 @@
 import express from 'express';
 import { PostgresDataSource } from './db/connection';
 import { UserRouter } from './routes/user.route';
+import { BookRouter } from './routes/book.route';
 const app = express()
 app.use(express.json());
 
@@ -13,6 +14,7 @@ PostgresDataSource.initialize().then(() => {
 const port = 3000
 
 app.use(UserRouter)
+app.use(BookRouter)
 
 
 
