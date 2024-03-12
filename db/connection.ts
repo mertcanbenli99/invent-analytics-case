@@ -2,6 +2,7 @@ import { DataSource } from "typeorm"
 import { User } from "../db/entities/user.entity"
 import { TYPEORM } from "../config/config";
 import { Book } from "./entities/book.entity";
+import { BorrowedBook } from "./entities/borrowed-book.entity";
 
 export const PostgresDataSource = new DataSource({
     type: TYPEORM.CONNECTION as "postgres",
@@ -12,7 +13,8 @@ export const PostgresDataSource = new DataSource({
     database: TYPEORM.DATABASE,
     entities: [
         User,
-        Book
+        Book,
+        BorrowedBook
     ],
     synchronize: true
 })

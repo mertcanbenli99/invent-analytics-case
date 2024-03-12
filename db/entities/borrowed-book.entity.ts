@@ -1,7 +1,8 @@
-import { Column, Index, JoinColumn, ManyToOne, OneToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Book } from "./book.entity";
 import { User } from "./user.entity";
 
+@Entity()
 export class BorrowedBook {
 
     @PrimaryGeneratedColumn()
@@ -22,7 +23,7 @@ export class BorrowedBook {
     @JoinColumn({name: 'book_id'})
     book: Book
 
-    @Column()
+    @Column({default: () => 'CURRENT_TIMESTAMP'})
     borrow_date: Date
 
     @Column({nullable: true})
@@ -33,6 +34,4 @@ export class BorrowedBook {
 
     @Column({default: false})
     returned: boolean;
-    
-
 }
