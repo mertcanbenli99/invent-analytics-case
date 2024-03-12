@@ -2,6 +2,8 @@ import express from 'express';
 import { PostgresDataSource } from './db/connection';
 import { UserRouter } from './routes/user.route';
 import { BookRouter } from './routes/book.route';
+import "express-async-errors";
+import { errorHandler } from './middleware/error-handler';
 const app = express()
 app.use(express.json());
 
@@ -15,6 +17,7 @@ const port = 3000
 
 app.use(UserRouter)
 app.use(BookRouter)
+app.use(errorHandler)
 
 
 
