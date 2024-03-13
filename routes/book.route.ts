@@ -14,8 +14,9 @@ router.post(
   validateRequest,
   async (req: Request, res: Response) => {
     const { name } = req.body;
+        
 
-    const book = await bookRepository.create(name);
+    const book = await bookRepository.create({name});
     const results = await bookRepository.save(book);
     return res.status(201).send(results);
   },
